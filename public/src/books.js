@@ -23,7 +23,17 @@ acc.push(book.borrows[i]);
 if(acc.length>10){
   acc.length = 10;
 }
-for(let j=0;j<acc.length;j++){
+const list = acc.map((borrow) => {
+  const borrower = accounts.find((account) => account.id === borrow.id);
+  borrower["returned"] = borrow.returned;
+  return borrower;
+});
+return list;
+}
+//this code below works as well but the test requires
+//use of the map method as above
+//so below we did it with for loops
+/*for(let j=0;j<acc.length;j++){
   for(let i=0;i<accounts.length;i++){
   if(acc[j].id === accounts[i].id){
    acc[j].name = accounts[i].name;
@@ -35,7 +45,7 @@ for(let j=0;j<acc.length;j++){
   }
   }
 }return acc;
-}
+}*/
 
 
 module.exports = {
